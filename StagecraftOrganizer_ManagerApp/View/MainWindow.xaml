@@ -1,0 +1,140 @@
+﻿<Controls:MetroWindow  x:Class="StagecraftOrganizer_ManagerApp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StagecraftOrganizer_ManagerApp"
+        xmlns:model="clr-namespace:StagecraftOrganizer_ManagerApp.Model"
+       
+         xmlns:views = "clr-namespace:StagecraftOrganizer_ManagerApp.View"
+        xmlns:viewModels = "clr-namespace:StagecraftOrganizer_ManagerApp.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:behaviour="clr-namespace:AttachedCommandBehavior;assembly=AttachedCommandBehavior"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+       behaviour:CommandBehavior.Event="Loaded"
+        behaviour:CommandBehavior.Command="{Binding NavigateCommand}"
+        behaviour:CommandBehavior.CommandParameter="manageSeatBooking"
+        Title="Stagecraft Organizer" Height="480" Width="800" DataContext="{Binding Main, Source={StaticResource Locator}}" 
+            ResizeMode="NoResize" 
+        ShowIconOnTitleBar="True" BorderThickness="0" 
+        GlowBrush="Black"  Icon="../Assets/icon.png"
+        WindowTransitionsEnabled="True"
+        WindowStartupLocation="CenterScreen"  dialogs:DialogParticipation.Register="{Binding}"  WindowTitleBrush="Black">
+
+    <!--<Window.Resources>
+
+        <DataTemplate DataType = "{x:Type viewModels:ManageSeatingViewModel}">
+            <views:ManageSeating/>
+        </DataTemplate>
+        <DataTemplate DataType = "{x:Type viewModels:ManageBookingHistoryViewModel}">
+            <views:ManageSeatBookingHistory/>
+        </DataTemplate>
+    </Window.Resources>-->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <ListBox Name="MessageContent" ItemsSource="{Binding MessageContent}"/>
+    
+    
+    <!--<Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            --><!--Acceso directo a Login--><!--
+            <Button ToolTip="Login" Name="loginButton"  Command="{Binding OpenLoginLayoutCommand}" >
+                <Rectangle Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                   Visual="{StaticResource appbar_user}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl x:Name="controlesFlyouts">
+
+            <Controls:Flyout x:Name="loginFlyout"
+                             Header="Login"
+                             Position="Right"
+                             IsPinned="False"
+                             IsOpen="{Binding LoginFlyoutIsVisible}"
+                             AnimateOnPositionChange="False"
+                             AnimateOpacity="True"
+                             IsModal="False"
+                             Theme="Dark"
+                             ExternalCloseButton="Left"
+                             CloseButtonVisibility="Visible"
+                             TitleVisibility="Visible"
+                             AreAnimationsEnabled="True"
+                             Width="350">
+                <views:Login/>
+            </Controls:Flyout>
+            <Controls:Flyout x:Name="signUpFlyout"
+                             Header="SignUp"
+                             Position="Right"
+                             IsPinned="False"
+                             IsOpen="{Binding SignUpFlyoutIsVisible}"
+                             AnimateOnPositionChange="False"
+                             AnimateOpacity="True"
+                             IsModal="False"
+                              Theme="Dark"
+                             ExternalCloseButton="Left"
+                             CloseButtonVisibility="Visible"
+                             TitleVisibility="Visible"
+                             AreAnimationsEnabled="True"
+                             Width="350">
+                <views:Signup/>
+            </Controls:Flyout>
+            <Controls:Flyout x:Name="logOutFlyout"
+                             Header="Logout"
+                             Position="Right"
+                             IsPinned="False"
+                             IsOpen="{Binding LogoutFlyoutIsVisible}"
+                             AnimateOnPositionChange="False"
+                             AnimateOpacity="True"
+                             IsModal="False"
+                              Theme="Dark"
+                             ExternalCloseButton="Left"
+                             CloseButtonVisibility="Visible"
+                             TitleVisibility="Visible"
+                             AreAnimationsEnabled="True"
+                             Width="350">
+                <views:Logout/>
+
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+    --><!--<Viewbox Stretch="Uniform">--><!--
+    <Grid x:Name="RootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "30" />
+            <RowDefinition Height = "23" />
+            <RowDefinition Height = "*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name = "navBar" Grid.Row = "0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "380" />
+                <ColumnDefinition Width = "*" />
+
+            </Grid.ColumnDefinitions>
+            <Menu Margin="2,0,0,0" Grid.Column="0"
+              
+              SnapsToDevicePixels="True" Name="menuItems"  FontSize="12">
+                <MenuItem Header="Manage Seating" Command="{Binding NavigateCommand}" CommandParameter = "manageSeatBooking" Background="Transparent" ToolTip="Manage Seating" />
+                <MenuItem Header="|" Background="Transparent" IsEnabled="False"/>
+                <MenuItem Header="Manage Seat Booking History" Command="{Binding NavigateCommand}" CommandParameter = "manageNotificationMessages" Background="Transparent" ToolTip="Manage Seat Booking  History"/>
+            </Menu>
+            <TextBlock x:Name="currentUser" TextWrapping="Wrap" Text="{Binding CurrentUser}"   HorizontalAlignment="Right" Grid.Column="1" Margin="0,7,40,0"/>
+
+        </Grid>
+        <TextBlock Text="{Binding Title}" Margin="15,2,0,0" Grid.Row="1"  FontSize="13"  FontStyle="Italic" Foreground="DodgerBlue" FontFamily="Baskerville Old Face"/>
+        <ContentControl x:Name="mainContent" Content="{Binding CurrentViewModel}"  Grid.Row="2"/>
+
+    </Grid>-->
+
+    <!--</Viewbox>-->
+</Controls:MetroWindow>

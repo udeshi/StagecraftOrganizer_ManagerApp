@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d0401140b0648d685e071c047f27b98" Name="Diagram1" ZoomLevel="98" >
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.BlockRow" Width="1.5" PointX="8" PointY="4.875" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.Block" Width="1.5" PointX="5.75" PointY="4.875" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.Booking" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.Seat" Width="1.5" PointX="10.25" PointY="5.125" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.Ticket" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.TicketType" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="StagecraftOrganizer_ManagerAppModel.User" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.FK_BookingTicket" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.FK_TicketTypeTicket" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.TicketSeat" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.UserBooking" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.BlockBlockRow" />
+        <AssociationConnector Association="StagecraftOrganizer_ManagerAppModel.BlockRowSeat" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

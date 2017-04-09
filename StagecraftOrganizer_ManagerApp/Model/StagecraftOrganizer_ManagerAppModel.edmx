@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StagecraftOrganizer_ManagerAppModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StagecraftOrganizer_ManagerAppModelStoreContainer">
+    <EntitySet Name="BlockRows" EntityType="StagecraftOrganizer_ManagerAppModel.Store.BlockRows" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Blocks" EntityType="StagecraftOrganizer_ManagerAppModel.Store.Blocks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Bookings" EntityType="StagecraftOrganizer_ManagerAppModel.Store.Bookings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Seats" EntityType="StagecraftOrganizer_ManagerAppModel.Store.Seats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tickets" EntityType="StagecraftOrganizer_ManagerAppModel.Store.Tickets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketTypes" EntityType="StagecraftOrganizer_ManagerAppModel.Store.TicketTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="StagecraftOrganizer_ManagerAppModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BookingTicket" Association="StagecraftOrganizer_ManagerAppModel.Store.FK_BookingTicket">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketTypeTicket" Association="StagecraftOrganizer_ManagerAppModel.Store.FK_TicketTypeTicket">
+      <End Role="TicketType" EntitySet="TicketTypes" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="TicketSeat" Association="StagecraftOrganizer_ManagerAppModel.Store.TicketSeat">
+      <End Role="Ticket" EntitySet="Tickets" />
+      <End Role="Seat" EntitySet="Seats" />
+    </AssociationSet>
+    <AssociationSet Name="UserBooking" Association="StagecraftOrganizer_ManagerAppModel.Store.UserBooking">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="BlockBlockRow" Association="StagecraftOrganizer_ManagerAppModel.Store.BlockBlockRow">
+      <End Role="Block" EntitySet="Blocks" />
+      <End Role="BlockRow" EntitySet="BlockRows" />
+    </AssociationSet>
+    <AssociationSet Name="BlockRowSeat" Association="StagecraftOrganizer_ManagerAppModel.Store.BlockRowSeat">
+      <End Role="BlockRow" EntitySet="BlockRows" />
+      <End Role="Seat" EntitySet="Seats" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BlockRows">
+    <Key>
+      <PropertyRef Name="RowNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RowNo" Type="int" Nullable="false" />
+    <Property Name="RowLetter" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="Block_BlockNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Blocks">
+    <Key>
+      <PropertyRef Name="BlockNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlockNo" Type="int" Nullable="false" />
+    <Property Name="Direction" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Floor" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="TheatreBlockNo" Type="nvarchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Bookings">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingId" Type="int" Nullable="false" />
+    <Property Name="BookingDate" Type="datetime" Nullable="false" />
+    <Property Name="User_UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Seats">
+    <Key>
+      <PropertyRef Name="SeatNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SeatNo" Type="int" Nullable="false" />
+    <Property Name="BlockRow_RowNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="TicketNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TicketNo" Type="int" Nullable="false" />
+    <Property Name="TicketType_TicketTypeId" Type="int" Nullable="false" />
+    <Property Name="Booking_BookingId" Type="int" Nullable="true" />
+    <Property Name="ReservationStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Seat_SeatNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TicketTypes">
+    <Key>
+      <PropertyRef Name="TicketTypeId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TicketTypeId" Type="int" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <Association Name="FK_BookingTicket">
+    <End Role="Booking" Type="StagecraftOrganizer_ManagerAppModel.Store.Bookings" Multiplicity="0..1" />
+    <End Role="Ticket" Type="StagecraftOrganizer_ManagerAppModel.Store.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingId" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Booking_BookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketTypeTicket">
+    <End Role="TicketType" Type="StagecraftOrganizer_ManagerAppModel.Store.TicketTypes" Multiplicity="1" />
+    <End Role="Ticket" Type="StagecraftOrganizer_ManagerAppModel.Store.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketType">
+        <PropertyRef Name="TicketTypeId" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="TicketType_TicketTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TicketSeat">
+    <End Role="Ticket" Type="StagecraftOrganizer_ManagerAppModel.Store.Tickets" Multiplicity="*" />
+    <End Role="Seat" Type="StagecraftOrganizer_ManagerAppModel.Store.Seats" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Seat">
+        <PropertyRef Name="SeatNo" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Seat_SeatNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBooking">
+    <End Role="User" Type="StagecraftOrganizer_ManagerAppModel.Store.Users" Multiplicity="1" />
+    <End Role="Booking" Type="StagecraftOrganizer_ManagerAppModel.Store.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BlockBlockRow">
+    <End Role="Block" Type="StagecraftOrganizer_ManagerAppModel.Store.Blocks" Multiplicity="1" />
+    <End Role="BlockRow" Type="StagecraftOrganizer_ManagerAppModel.Store.BlockRows" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Block">
+        <PropertyRef Name="BlockNo" />
+      </Principal>
+      <Dependent Role="BlockRow">
+        <PropertyRef Name="Block_BlockNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BlockRowSeat">
+    <End Role="BlockRow" Type="StagecraftOrganizer_ManagerAppModel.Store.BlockRows" Multiplicity="1" />
+    <End Role="Seat" Type="StagecraftOrganizer_ManagerAppModel.Store.Seats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlockRow">
+        <PropertyRef Name="RowNo" />
+      </Principal>
+      <Dependent Role="Seat">
+        <PropertyRef Name="BlockRow_RowNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="StagecraftOrganizer_ManagerAppModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="StagecraftOrganizer_ManagerAppDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlockRows" EntityType="StagecraftOrganizer_ManagerAppModel.BlockRow" />
+          <EntitySet Name="Blocks" EntityType="StagecraftOrganizer_ManagerAppModel.Block" />
+          <EntitySet Name="Bookings" EntityType="StagecraftOrganizer_ManagerAppModel.Booking" />
+          <EntitySet Name="Seats" EntityType="StagecraftOrganizer_ManagerAppModel.Seat" />
+          <EntitySet Name="Tickets" EntityType="StagecraftOrganizer_ManagerAppModel.Ticket" />
+          <EntitySet Name="TicketTypes" EntityType="StagecraftOrganizer_ManagerAppModel.TicketType" />
+          <EntitySet Name="Users" EntityType="StagecraftOrganizer_ManagerAppModel.User" />
+          <AssociationSet Name="FK_BookingTicket" Association="StagecraftOrganizer_ManagerAppModel.FK_BookingTicket">
+            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketTypeTicket" Association="StagecraftOrganizer_ManagerAppModel.FK_TicketTypeTicket">
+            <End Role="TicketType" EntitySet="TicketTypes" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="TicketSeat" Association="StagecraftOrganizer_ManagerAppModel.TicketSeat">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="Seat" EntitySet="Seats" />
+          </AssociationSet>
+          <AssociationSet Name="UserBooking" Association="StagecraftOrganizer_ManagerAppModel.UserBooking">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="BlockBlockRow" Association="StagecraftOrganizer_ManagerAppModel.BlockBlockRow">
+            <End Role="Block" EntitySet="Blocks" />
+            <End Role="BlockRow" EntitySet="BlockRows" />
+          </AssociationSet>
+          <AssociationSet Name="BlockRowSeat" Association="StagecraftOrganizer_ManagerAppModel.BlockRowSeat">
+            <End Role="BlockRow" EntitySet="BlockRows" />
+            <End Role="Seat" EntitySet="Seats" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BlockRow">
+          <Key>
+            <PropertyRef Name="RowNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RowNo" Type="Int32" Nullable="false" />
+          <Property Name="RowLetter" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Block" Relationship="StagecraftOrganizer_ManagerAppModel.BlockBlockRow" FromRole="BlockRow" ToRole="Block" />
+          <NavigationProperty Name="Seats" Relationship="StagecraftOrganizer_ManagerAppModel.BlockRowSeat" FromRole="BlockRow" ToRole="Seat" />
+        </EntityType>
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="BlockNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlockNo" Type="Int32" Nullable="false" />
+          <Property Name="Direction" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Floor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TheatreBlockNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BlockRows" Relationship="StagecraftOrganizer_ManagerAppModel.BlockBlockRow" FromRole="Block" ToRole="BlockRow" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingId" Type="Int32" Nullable="false" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tickets" Relationship="StagecraftOrganizer_ManagerAppModel.FK_BookingTicket" FromRole="Booking" ToRole="Ticket" />
+          <NavigationProperty Name="User" Relationship="StagecraftOrganizer_ManagerAppModel.UserBooking" FromRole="Booking" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Seat">
+          <Key>
+            <PropertyRef Name="SeatNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeatNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ticket" Relationship="StagecraftOrganizer_ManagerAppModel.TicketSeat" FromRole="Seat" ToRole="Ticket" />
+          <NavigationProperty Name="BlockRow" Relationship="StagecraftOrganizer_ManagerAppModel.BlockRowSeat" FromRole="Seat" ToRole="BlockRow" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="TicketNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TicketNo" Type="Int32" Nullable="false" />
+          <Property Name="TicketType_TicketTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Booking_BookingId" Type="Int32" />
+          <NavigationProperty Name="Booking" Relationship="StagecraftOrganizer_ManagerAppModel.FK_BookingTicket" FromRole="Ticket" ToRole="Booking" />
+          <NavigationProperty Name="TicketType" Relationship="StagecraftOrganizer_ManagerAppModel.FK_TicketTypeTicket" FromRole="Ticket" ToRole="TicketType" />
+          <NavigationProperty Name="Seat" Relationship="StagecraftOrganizer_ManagerAppModel.TicketSeat" FromRole="Ticket" ToRole="Seat" />
+          <Property Name="ReservationStatus" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketType">
+          <Key>
+            <PropertyRef Name="TicketTypeId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TicketTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Tickets" Relationship="StagecraftOrganizer_ManagerAppModel.FK_TicketTypeTicket" FromRole="TicketType" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bookings" Relationship="StagecraftOrganizer_ManagerAppModel.UserBooking" FromRole="User" ToRole="Booking" />
+        </EntityType>
+        <Association Name="FK_BookingTicket">
+          <End Type="StagecraftOrganizer_ManagerAppModel.Booking" Role="Booking" Multiplicity="0..1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.Ticket" Role="Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="BookingId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Booking_BookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketTypeTicket">
+          <End Type="StagecraftOrganizer_ManagerAppModel.TicketType" Role="TicketType" Multiplicity="1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.Ticket" Role="Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="TicketTypeId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="TicketType_TicketTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TicketSeat">
+          <End Type="StagecraftOrganizer_ManagerAppModel.Ticket" Role="Ticket" Multiplicity="1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.Seat" Role="Seat" Multiplicity="1" />
+        </Association>
+        <Association Name="UserBooking">
+          <End Type="StagecraftOrganizer_ManagerAppModel.User" Role="User" Multiplicity="1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.Booking" Role="Booking" Multiplicity="*" />
+        </Association>
+        <Association Name="BlockBlockRow">
+          <End Type="StagecraftOrganizer_ManagerAppModel.Block" Role="Block" Multiplicity="1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.BlockRow" Role="BlockRow" Multiplicity="*" />
+        </Association>
+        <Association Name="BlockRowSeat">
+          <End Type="StagecraftOrganizer_ManagerAppModel.BlockRow" Role="BlockRow" Multiplicity="1" />
+          <End Type="StagecraftOrganizer_ManagerAppModel.Seat" Role="Seat" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StagecraftOrganizer_ManagerAppModelStoreContainer" CdmEntityContainer="StagecraftOrganizer_ManagerAppDBContext">
+    <EntitySetMapping Name="BlockRows">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.BlockRow)">
+        <MappingFragment StoreEntitySet="BlockRows">
+          <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RowLetter" ColumnName="RowLetter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blocks">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.Block)">
+        <MappingFragment StoreEntitySet="Blocks">
+          <ScalarProperty Name="BlockNo" ColumnName="BlockNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="TheatreBlockNo" ColumnName="TheatreBlockNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.Booking)">
+        <MappingFragment StoreEntitySet="Bookings">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seats">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.Seat)">
+        <MappingFragment StoreEntitySet="Seats">
+          <ScalarProperty Name="SeatNo" ColumnName="SeatNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.Ticket)">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TicketType_TicketTypeId" ColumnName="TicketType_TicketTypeId" />
+          <ScalarProperty Name="Booking_BookingId" ColumnName="Booking_BookingId" />
+          <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.TicketType)">
+        <MappingFragment StoreEntitySet="TicketTypes">
+          <ScalarProperty Name="TicketTypeId" ColumnName="TicketTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(StagecraftOrganizer_ManagerAppModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TicketSeat" TypeName="StagecraftOrganizer_ManagerAppModel.TicketSeat" StoreEntitySet="Tickets">
+      <EndProperty Name="Seat">
+        <ScalarProperty Name="SeatNo" ColumnName="Seat_SeatNo" />
+      </EndProperty>
+      <EndProperty Name="Ticket">
+        <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserBooking" TypeName="StagecraftOrganizer_ManagerAppModel.UserBooking" StoreEntitySet="Bookings">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BlockBlockRow" TypeName="StagecraftOrganizer_ManagerAppModel.BlockBlockRow" StoreEntitySet="BlockRows">
+      <EndProperty Name="Block">
+        <ScalarProperty Name="BlockNo" ColumnName="Block_BlockNo" />
+      </EndProperty>
+      <EndProperty Name="BlockRow">
+        <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BlockRowSeat" TypeName="StagecraftOrganizer_ManagerAppModel.BlockRowSeat" StoreEntitySet="Seats">
+      <EndProperty Name="BlockRow">
+        <ScalarProperty Name="RowNo" ColumnName="BlockRow_RowNo" />
+      </EndProperty>
+      <EndProperty Name="Seat">
+        <ScalarProperty Name="SeatNo" ColumnName="SeatNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

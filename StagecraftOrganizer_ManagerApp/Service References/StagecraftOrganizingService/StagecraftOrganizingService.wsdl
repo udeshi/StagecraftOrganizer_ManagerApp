@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StagecraftOrganizingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IStagecraftOrganizingService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="1200000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7742/StagecraftOrganizingServiceHost.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7742/StagecraftOrganizingServiceHost.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:7742/StagecraftOrganizingServiceHost.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7742/StagecraftOrganizingServiceHost.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/StagecraftOrganizingService.DataContracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IStagecraftOrganizingService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_Connect_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestUpdatedSeatList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestUpdatedSeatList" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestUpdatedSeatList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestUpdatedSeatListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestUpdatedSeatList_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_BookSeats_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookSeats" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_BookSeats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookSeatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_BookSeats_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_DeleteBookedSeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookedSeat" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_DeleteBookedSeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookedSeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_DeleteBookedSeat_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_CheckAvailibility_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAvailibility" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_CheckAvailibility_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAvailibilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_CheckAvailibility_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestMoreSeats_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestMoreSeats" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestMoreSeats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestMoreSeatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_RequestMoreSeats_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendUpdatedList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendUpdatedList" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendUpdatedList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendUpdatedListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendUpdatedList_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_Disconnect_ApplicationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/System" name="detail" element="q8:ApplicationException" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendUpdatedSeatingList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendUpdatedSeatingList" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_NotifyToGetUpdatedSeatingList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyToGetUpdatedSeatingList" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendBookedSeatDetailsToDelete_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendBookedSeatDetailsToDelete" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_NotifyToCheckAvailabiltyOfSeats_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyToCheckAvailabiltyOfSeats" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendAvailabiltyOfSeats_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendAvailabiltyOfSeats" />
+  </wsdl:message>
+  <wsdl:message name="IStagecraftOrganizingService_SendRequestForMoreTickets_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendRequestForMoreTickets" />
+  </wsdl:message>
+  <wsdl:portType name="IStagecraftOrganizingService">
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/Connect" message="tns:IStagecraftOrganizingService_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/ConnectResponse" message="tns:IStagecraftOrganizingService_Connect_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/ConnectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_Connect_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdatedSeatList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestUpdatedSeatList" message="tns:IStagecraftOrganizingService_RequestUpdatedSeatList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestUpdatedSeatListResponse" message="tns:IStagecraftOrganizingService_RequestUpdatedSeatList_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestUpdatedSeatListApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_RequestUpdatedSeatList_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookSeats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/BookSeats" message="tns:IStagecraftOrganizingService_BookSeats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/BookSeatsResponse" message="tns:IStagecraftOrganizingService_BookSeats_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/BookSeatsApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_BookSeats_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBookedSeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/DeleteBookedSeat" message="tns:IStagecraftOrganizingService_DeleteBookedSeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/DeleteBookedSeatResponse" message="tns:IStagecraftOrganizingService_DeleteBookedSeat_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/DeleteBookedSeatApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_DeleteBookedSeat_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAvailibility">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/CheckAvailibility" message="tns:IStagecraftOrganizingService_CheckAvailibility_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/CheckAvailibilityResponse" message="tns:IStagecraftOrganizingService_CheckAvailibility_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/CheckAvailibilityApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_CheckAvailibility_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestMoreSeats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestMoreSeats" message="tns:IStagecraftOrganizingService_RequestMoreSeats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestMoreSeatsResponse" message="tns:IStagecraftOrganizingService_RequestMoreSeats_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/RequestMoreSeatsApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_RequestMoreSeats_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdatedList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedList" message="tns:IStagecraftOrganizingService_SendUpdatedList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedListResponse" message="tns:IStagecraftOrganizingService_SendUpdatedList_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedListApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_SendUpdatedList_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/Disconnect" message="tns:IStagecraftOrganizingService_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/DisconnectResponse" message="tns:IStagecraftOrganizingService_Disconnect_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/DisconnectApplicationExceptionFault" name="ApplicationExceptionFault" message="tns:IStagecraftOrganizingService_Disconnect_ApplicationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdatedSeatingList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedSeatingList" message="tns:IStagecraftOrganizingService_SendUpdatedSeatingList_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyToGetUpdatedSeatingList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/NotifyToGetUpdatedSeatingList" message="tns:IStagecraftOrganizingService_NotifyToGetUpdatedSeatingList_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendBookedSeatDetailsToDelete">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendBookedSeatDetailsToDelete" message="tns:IStagecraftOrganizingService_SendBookedSeatDetailsToDelete_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyToCheckAvailabiltyOfSeats">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/NotifyToCheckAvailabiltyOfSeats" message="tns:IStagecraftOrganizingService_NotifyToCheckAvailabiltyOfSeats_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAvailabiltyOfSeats">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendAvailabiltyOfSeats" message="tns:IStagecraftOrganizingService_SendAvailabiltyOfSeats_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestForMoreTickets">
+      <wsdl:output wsaw:Action="http://tempuri.org/IStagecraftOrganizingService/SendRequestForMoreTickets" message="tns:IStagecraftOrganizingService_SendRequestForMoreTickets_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDualHttpBinding_IStagecraftOrganizingService" type="tns:IStagecraftOrganizingService">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_IStagecraftOrganizingService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUpdatedSeatList">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/RequestUpdatedSeatList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BookSeats">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/BookSeats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBookedSeat">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/DeleteBookedSeat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAvailibility">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/CheckAvailibility" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RequestMoreSeats">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/RequestMoreSeats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdatedList">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationExceptionFault">
+        <soap12:fault use="literal" name="ApplicationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdatedSeatingList">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/SendUpdatedSeatingList" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyToGetUpdatedSeatingList">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/NotifyToGetUpdatedSeatingList" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBookedSeatDetailsToDelete">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/SendBookedSeatDetailsToDelete" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyToCheckAvailabiltyOfSeats">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/NotifyToCheckAvailabiltyOfSeats" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAvailabiltyOfSeats">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/SendAvailabiltyOfSeats" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestForMoreTickets">
+      <soap12:operation soapAction="http://tempuri.org/IStagecraftOrganizingService/SendRequestForMoreTickets" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StagecraftOrganizingService">
+    <wsdl:port name="WSDualHttpBinding_IStagecraftOrganizingService" binding="tns:WSDualHttpBinding_IStagecraftOrganizingService">
+      <soap12:address location="http://localhost:7742/StagecraftOrganizingServiceHost.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:7742/StagecraftOrganizingServiceHost.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

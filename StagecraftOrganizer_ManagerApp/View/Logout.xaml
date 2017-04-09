@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="StagecraftOrganizer_ManagerApp.View.Logout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StagecraftOrganizer_ManagerApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid Width="300">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Are you sure you want to logout?" FontWeight="Bold" FontStyle="Italic" Margin="20,30"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="logout" Content="Logout" HorizontalAlignment="Center" Margin="38,4,0,0" Width="110" Command="{Binding LogOutCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                <Button x:Name="logoutCancel" Content="Cancel" HorizontalAlignment="Center" Margin="5,4,0,0" Width="110" Command="{Binding LogOutCancelCommand}" Style="{DynamicResource SquareButtonStyle}" />
+            </StackPanel>
+            <Button x:Name="switchAccount" Content="Switch Account" Margin="0,18,0,0" HorizontalAlignment="Center" Width="200" Command="{Binding SignUpNavCommand}" Style="{DynamicResource MetroFlatButton}" Background="Transparent" FontSize="11" Foreground="LightSkyBlue"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
